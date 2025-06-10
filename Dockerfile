@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image.
 # This provides a base operating system and Python pre-installed.
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # Set the working directory inside the container to /app.
 # All subsequent commands will run from this directory.
