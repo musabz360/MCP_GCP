@@ -1,6 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 from app import getliveTemp
-import os # Add this line
+import os
 
 # Initialize MCP server
 mcp = FastMCP("weather-forecast-mcp")
@@ -14,9 +14,9 @@ async def get_live_weather(latitude: float, longitude: float) -> dict:
     return result
 
 # Get the port from the environment variable provided by Cloud Run.
-# Default to 8080 if the PORT environment variable is not set (e.g., for local testing).
+# We still define it, but FastMCP.run() likely picks it up automatically when transport="http".
 PORT = int(os.environ.get("PORT", 8080))
 
 if __name__ == "__main__":
-    # Change transport to "http" and listen on the dynamically provided PORT
-    mcp.run(transport="http", port=PORT)
+    print(f"Starting FastMCP server with HTTP transport (Cloud Run will set port {PORT})...")
+    mcp.run(transport="http") # <--- MODIFIED THIS LINE
